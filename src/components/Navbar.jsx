@@ -5,7 +5,8 @@ function Header() {
     <header className="site-header">
       <nav className="navbar">
         <ul className="nav-links">
-          <li><Link to="/">APOD</Link></li>
+          <li><Link to="/">Homepage</Link></li>
+          <li><Link to="/apod">APOD</Link></li>
           <li><Link to="/mars">Mars Rover</Link></li>
           <li><Link to="/earth">Earth Imagery</Link></li>
         </ul>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import Earth_Container from "./components/earth_components/Earth_Container"
-import Navbar from "./components/Navbar"
+import Earth_Container from "../components/earth_components/Earth_Container"
+import Navbar from "../components/Navbar"
 
 // Load API key from .env
 const API_KEY = import.meta.env.VITE_NASA_API_KEY

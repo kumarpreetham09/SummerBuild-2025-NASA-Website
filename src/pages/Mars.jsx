@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import Curiosity_Carousel from "./components/mars_components/Curiosity_Carousel";
-import Mars_Container from "./components/mars_components/Mars_Container";
-import Perseverance_Carousel from "./components/mars_components/Perseverance_Carousel";
-import NavBar from "./components/Navbar";
+import Curiosity_Carousel from "../components/mars_components/Curiosity_Carousel";
+import Mars_Container from "../components/mars_components/Mars_Container";
+import Perseverance_Carousel from "../components/mars_components/Perseverance_Carousel";
+import NavBar from "../components/Navbar";
 
 // Load API key from .env
 const API_KEY = import.meta.env.VITE_NASA_API_KEY

@@ -1,14 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import Mars from './Mars.jsx'
-import Earth from './Earth.jsx'
+import APOD from './pages/APOD.jsx'
+import Mars from './pages/Mars.jsx'
+import Earth from './pages/Earth.jsx'
+import Homepage from './pages/Homepage.jsx'
 
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 const router = createBrowserRouter([
-  {path:"/",element:<App></App>},
+  {path:"/",element:<Homepage></Homepage>},
+  {path:"/apod",element:<APOD></APOD>},
   {path:"/mars",element:<Mars></Mars>},
   {path:"/earth",element:<Earth></Earth>},
 

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import Footer from "./components/apod_components/Footer"
-import BGImage from "./components/apod_components/BGImage"
-import SideBar from "./components/apod_components/SideBar"
-import Navbar from "./components/Navbar"
+import Footer from "../components/apod_components/Footer"
+import BGImage from "../components/apod_components/BGImage"
+import SideBar from "../components/apod_components/SideBar"
+import Navbar from "../components/Navbar"
 
 // Load API key from .env
 const API_KEY = import.meta.env.VITE_NASA_API_KEY
 
-function App() {
+function APOD() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
@@ -65,4 +65,4 @@ function App() {
   )
 }
 
-export default App
+export default APOD
