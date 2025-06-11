@@ -23,12 +23,14 @@ function Perseverance_Carousel(props) {
                     alt="Perseverance Rover"
                 />
                 <div className="carousel_controls_per">
-                    <button onClick={prevImage}>← Prev</button>
-                    <span>{index + 1} / {length}</span>
-                    <button onClick={nextImage}>Next →</button>
                     <p className="perseverance_photo_meta">
                     Taken by: {data[index].camera.full_name} on {data[index].earth_date}
                 </p>
+                <br></br>
+                    <button onClick={prevImage}>← Prev</button>
+                    <span>{index + 1} / {length}</span>
+                    <button onClick={nextImage}>Next →</button>
+                    
                 </div>
             </div>
         </>

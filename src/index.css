@@ -4,10 +4,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color: white;
   background-color: #050315;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +21,7 @@
 #root {
   min-height: 100vh;
   display: flex;
-  display: relative;
+  position: relative;
 }
 
 .imgContainer {
@@ -37,8 +35,20 @@
   width: 100%;
   height: 100%;
   flex: 1;
-  object-fit:contain
+  object-fit: contain;
 }
+
+.marsImage, .homepageImage {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  object-fit: cover;
+}
+
+.marsImage {
+  background: rgba(0, 0, 0, 1);
+}
+
 
 footer {
   position: fixed;
@@ -84,12 +94,14 @@ footer button:hover {
   opacity: 0.7;
 }
 
+
 .bgGradient {
   position: absolute;
   inset: 0;
   z-index: -1;
   background: linear-gradient(to top, #050315, rgba(255, 255, 255, 0));
 }
+
 
 .sidebar {
   position: fixed;
@@ -156,6 +168,7 @@ footer button:hover {
   font-weight: 200;
 }
 
+
 .loadingState {
   position: fixed;
   top: 0;
@@ -174,310 +187,151 @@ footer button:hover {
   animation: spin 1s linear infinite;
 }
 
-.curErrorState {
-    position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 1rem;
-  max-width: 100%;
-  top: 50%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-}
 
-.perErrorState {
-    position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 1rem;
-  max-width: 100%;
-  top: 50%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-}
-
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* MARS MATTERS */
-
-.mars_container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
-  width: 100%;
-  
-}
-
-.marsImage {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  object-fit: cover;
-  background: rgba(0, 0, 0, 1);
-
-}
-
-/* Sidebar on the left */
-.mars_sidebar {
+.curErrorState, .perErrorState {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 100vh;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  max-width: 100%;
+  top: 50%;
+  right: calc(40% + 50% * 0.7 - (600px)/2);
+  width: 600px;
+  height: auto;
   z-index: 10;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.perseverance_image, .curiosity_image {
+  position: fixed;
+  top: 50%;
+  width: 500px;
+  height: auto;
+  z-index: 10;
+  transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border: 4px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-height: 500px;
 }
 
-/* Carousel centered in the remaining 70% */
 .perseverance_image {
-  position: fixed;
-  top: 50%;
-  left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-    align-items: center; /* This centers all child items horizontally */
-    border: 4px solid #ccc; /* Light gray border */
-    border-radius: 12px;     /* Optional: rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
-
+  left: calc(40% + 50% * 0.7 - (500px)/2);
 }
 
 .curiosity_image {
-  position: fixed;
-  top: 50%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-    align-items: center; /* This centers all child items horizontally */
-    border: 4px solid #ccc; /* Light gray border */
-    border-radius: 12px;     /* Optional: rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
-
+  right: calc(40% + 50% * 0.7 - (500px)/2);
 }
 
 
-
-
-.carousel_controls_cur {
-    position: fixed;
+.carousel_controls_cur, .carousel_controls_per {
+  position: fixed;
   text-align: center;
-  color: white; /* Optional: text color for contrast */
+  color: white;
   font-size: 1rem;
   max-width: 100%;
-  top: 85%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
+  top: 87.5%;
+  width: 500px;
   height: auto;
   z-index: 10;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+}
+
+.carousel_controls_cur {
+  right: calc(40% + 50% * 0.7 - (500px)/2);
 }
 
 .carousel_controls_per {
-    position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
+  left: calc(40% + 50% * 0.7 - (500px)/2);
+}
+
+.carousel_controls_cur button, .carousel_controls_per button {
+  padding: 0.6rem 1.2rem;
   font-size: 1rem;
-  max-width: 100%;
-  top: 85%;
-  left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
+  font-weight: bold;
+  color: white;
+  background-color: #1a1a2e;
+  border: 2px solid #4ecca3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.carousel_controls_cur button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: #1a1a2e; /* dark navy */
-    border: 2px solid #4ecca3; /* mint green accent */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.carousel_controls_cur button:hover, .carousel_controls_per button:hover {
+  background-color: #4ecca3;
+  color: #1a1a2e;
+  transform: scale(1.05);
 }
 
-.carousel_controls_cur button:hover {
-    background-color: #4ecca3;
-    color: #1a1a2e;
-    transform: scale(1.05);
-}
-
-.carousel_controls_cur span {
-    font-size: 1rem;
-    color: #ccc;
-}
-
-.curiosity_photo_meta {
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    color: #aaa;
-    text-align: center;
-    font-style: italic;
+.carousel_controls_cur span, .carousel_controls_per span {
+  font-size: 1rem;
+  color: #ccc;
 }
 
 
-
-
-.carousel_controls_per button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: #1a1a2e; /* dark navy */
-    border: 2px solid #4ecca3; /* mint green accent */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.curiosity_photo_meta, .perseverance_photo_meta {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #aaa;
+  text-align: center;
+  font-style: italic;
 }
 
-.carousel_controls_per button:hover {
-    background-color: #4ecca3;
-    color: #1a1a2e;
-    transform: scale(1.05);
-}
 
-.carousel_controls_per span {
-    font-size: 1rem;
-    color: #ccc;
-}
-
-.perseverance_photo_meta {
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    color: #aaa;
-    text-align: center;
-    font-style: italic;
-}
-
-.perseverance_photo_desc {
+.perseverance_title, .curiosity_title {
   position: fixed;
+  top: 15%;
+  width: 500px;
   text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 1rem;
-  max-width: 100%;
-  top: 85%;
-  left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
   z-index: 10;
   transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  
-
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(78, 204, 163, 0.4);
+  transition: all 0.3s ease-in-out;
 }
-
-.curiosity_photo_desc {
-  position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 1rem;
-  max-width: 100%;
-  top: 85%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  
-
-}
-
 
 .perseverance_title {
-    position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 3rem;
-  max-width: 100%;
-  top: 15%;
-  left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
+  left: calc(40% + 50% * 0.7 - 250px);
 }
-
 
 .curiosity_title {
-    position: fixed;
-  text-align: center;
-  color: white; /* Optional: text color for contrast */
-  font-size: 3rem;
-  max-width: 100%;
-  top: 15%;
-  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
-  width: 600px;
-  height: auto;
-  z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-}
-
-
-.site-header {
-  background-color: #000;
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  right: calc(40% + 50% * 0.7 - 250px);
 }
 
 .navbar {
-  position: absolute;
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%; /* Makes it span full width */
   display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-  padding-left: 2rem;
+  justify-content: left;
+  padding: 1rem 0; /* Adjusted padding */
+  background-color: #00000050; /* Added background to match site-header */
+  z-index: 1000; /* Ensures it stays above other content */
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
-  padding: 0;
+  padding-left: 1rem;
   margin: 0;
 }
 
@@ -492,16 +346,15 @@ footer button:hover {
   text-decoration: underline;
 }
 
-/* HOMEPAGE MATTERS */
-.homepageImage {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  object-fit:cover
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-
-
 
 
 @media (min-width: 640px) {
@@ -524,3 +377,66 @@ footer button:hover {
     width: 100vw;
   }
 }
+
+.earth_container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.homepageImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.typing_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    text-align: center; /* Center the text */
+    overflow: hidden;
+    width: max-content; /* Let the container expand to content */
+}
+
+.typing_line {
+    display: block; /* Make each line a block element */
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #000000;
+    width: 0;
+    margin: 0 auto; /* Center each line */
+}
+
+.typing_line:first-child {
+    animation: 
+        typing-first 1.5s steps(30, end) forwards;
+    border-right-color: transparent; /* Hide cursor initially */
+
+}
+
+.typing_line:last-child {
+    animation: 
+        typing-second 1.5s steps(30, end) 1.5s forwards; /* Delay the second line */
+ /* Delay the cursor blink */
+    border-right-color: transparent; /* Hide cursor initially */
+}
+
+@keyframes typing-first {
+    from { width: 0 }
+    to { width: 100%} /* Will expand to full line width */
+}
+
+@keyframes typing-second {
+    0% { width: 0}
+ /* Show cursor when typing starts */
+    to { width: 100% }
+}
+
+
