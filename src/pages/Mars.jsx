@@ -27,8 +27,8 @@ function Mars() {
         if (!curRes.ok) throw new Error(`API error: ${curRes.status}`)
         const curApiData = await curRes.json()
         setCurData(curApiData)
-        // console.log('Fetched from API')
-        // console.log('DATA',curdata.photos[0].img_src)
+        console.log('Fetched from API')
+        console.log('DATA',curdata.photos)
       } catch (err) {
         console.error("Error fetching NASA API:", err.message)
       } finally {
@@ -48,32 +48,7 @@ function Mars() {
         const preApiData = await preRes.json()
         setPreData(preApiData)
         // console.log('Fetched from API')
-        console.log('DATA',preManifestRes)
-      } catch (err) {
-        console.error("Error fetching NASA API:", err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    async function fetchInsAPIData() {
-
-      try {
-        const url = `https://api.nasa.gov/insight_weather/?api_key=${API_KEY}&feedtype=json&ver=1.0`
-        const res = await fetch(url)
-
-        if (!res.ok) throw new Error(`API error: ${res.status}`)
-
-        const insdata = await res.json()
-
-         const latestSol = insdata.sol_keys[insdata.sol_keys.length - 1];
-    const latestDate = insdata[latestSol]?.Last_UTC || insdata[latestSol]?.First_UTC;
-    console.log('Latest Sol:', latestSol);
-    console.log('Latest Earth Date:', latestDate);
-
-        setInsData(insdata)
-        console.log('Fetched from API')
-        console.log('DATA',insdata)
+        // console.log('DATA',preManifestRes)
       } catch (err) {
         console.error("Error fetching NASA API:", err.message)
       } finally {
@@ -83,10 +58,8 @@ function Mars() {
 
 
     
-
     fetchCurAPIData()
     fetchPreAPIData()
-    fetchInsAPIData()
   }, [])
 
 
@@ -101,7 +74,7 @@ function Mars() {
           <p>Loading NASA data...</p>
         </div>
       ) : curdata ? (
-        <Curiosity_Carousel data={curdata.photos[0].img_src} />
+        <Curiosity_Carousel data={curdata.photos} />
       ) : (
         <div className="curErrorState">
           <p>Failed to load NASA data. Please check your API key.</p>
@@ -115,7 +88,7 @@ function Mars() {
           <p>Loading NASA data...</p>
         </div>
       ) : predata ? (
-        <Perseverance_Carousel data={predata.photos[22].img_src} />
+        <Perseverance_Carousel data={predata.photos} />
       ) : (
         <div className="perErrorState">
           <p>Failed to load NASA data. Please check your API key.</p>

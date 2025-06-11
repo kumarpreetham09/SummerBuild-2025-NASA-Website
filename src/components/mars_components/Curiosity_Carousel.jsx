@@ -1,14 +1,38 @@
+import { useState } from "react";
+
 function Curiosity_Carousel(props) {
-    const { data } = props
-    return(
+    const { data } = props;
+    const [index, setIndex] = useState(0); // carousel index
+    const length = data.length;
+
+    const nextImage = () => {
+        setIndex((prevIndex) => (prevIndex + 1) % length);
+    };
+
+    const prevImage = () => {
+        setIndex((prevIndex) => (prevIndex - 1 + length) % length);
+    };
+
+    return (
         <>
-        <div className="curiosity_title">CURIOSITY</div>
-        <div>
-            <img src={data} className="curiosity_carousel"></img>
-        <div className="curiosity_photo_desc">Hello this is a description of the image above</div>
-        </div>
+            <div className="curiosity_title">CURIOSITY</div>
+            <div>
+                <img
+                    src={data[index].img_src}
+                    className="curiosity_image"
+                    alt="Curiosity Rover"
+                />
+                <div className="carousel_controls_cur">
+                    <button onClick={prevImage}>← Prev</button>
+                    <span>{index + 1} / {length}</span>
+                    <button onClick={nextImage}>Next →</button>
+                    <p className="curiosity_photo_meta">
+                    Taken by: {data[index].camera.full_name} on {data[index].earth_date}
+                </p>
+                </div>
+            </div>
         </>
-    )
+    );
 }
 
-export default Curiosity_Carousel
+export default Curiosity_Carousel;

@@ -252,7 +252,7 @@ footer button:hover {
 }
 
 /* Carousel centered in the remaining 70% */
-.perseverance_carousel {
+.perseverance_image {
   position: fixed;
   top: 50%;
   left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
@@ -264,10 +264,13 @@ footer button:hover {
   display: flex;
   flex-direction: column;
     align-items: center; /* This centers all child items horizontally */
+    border: 4px solid #ccc; /* Light gray border */
+    border-radius: 12px;     /* Optional: rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
 
 }
 
-.curiosity_carousel {
+.curiosity_image {
   position: fixed;
   top: 50%;
   right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
@@ -279,11 +282,111 @@ footer button:hover {
   display: flex;
   flex-direction: column;
     align-items: center; /* This centers all child items horizontally */
+    border: 4px solid #ccc; /* Light gray border */
+    border-radius: 12px;     /* Optional: rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
 
 }
 
 
 
+
+.carousel_controls_cur {
+    position: fixed;
+  text-align: center;
+  color: white; /* Optional: text color for contrast */
+  font-size: 1rem;
+  max-width: 100%;
+  top: 85%;
+  right: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
+  width: 600px;
+  height: auto;
+  z-index: 10;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel_controls_per {
+    position: fixed;
+  text-align: center;
+  color: white; /* Optional: text color for contrast */
+  font-size: 1rem;
+  max-width: 100%;
+  top: 85%;
+  left: calc(40% + 50% * 0.7 - (600px)/2); /* 150px is half of carousel width */
+  width: 600px;
+  height: auto;
+  z-index: 10;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel_controls_cur button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #1a1a2e; /* dark navy */
+    border: 2px solid #4ecca3; /* mint green accent */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel_controls_cur button:hover {
+    background-color: #4ecca3;
+    color: #1a1a2e;
+    transform: scale(1.05);
+}
+
+.carousel_controls_cur span {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.curiosity_photo_meta {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #aaa;
+    text-align: center;
+    font-style: italic;
+}
+
+
+
+
+.carousel_controls_per button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #1a1a2e; /* dark navy */
+    border: 2px solid #4ecca3; /* mint green accent */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel_controls_per button:hover {
+    background-color: #4ecca3;
+    color: #1a1a2e;
+    transform: scale(1.05);
+}
+
+.carousel_controls_per span {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.perseverance_photo_meta {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #aaa;
+    text-align: center;
+    font-style: italic;
+}
 
 .perseverance_photo_desc {
   position: fixed;
