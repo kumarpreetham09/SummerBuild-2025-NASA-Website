@@ -440,3 +440,200 @@ footer button:hover {
 }
 
 
+/* FunFacts Indexing*/
+
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: white;
+  background-color: #050315;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.fun_facts_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.background_image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+
+.fun_facts_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fun_facts_content {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+  max-width: 900px;
+  text-align: center;
+}
+
+.fun_facts_box {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1.3rem;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  margin: 2rem auto;
+  transition: all 0.3s ease-in-out;
+  max-height: 500px; /* fact box height limit */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.fact_content {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fun_facts_image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  user-select: none;
+  pointer-events: none;
+}
+
+.fun_facts_video iframe {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.fact_text {
+  white-space: pre-wrap;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: left;
+  padding: 1rem;
+  flex: 1;
+}
+
+/* Optional: nice scrollbars inside the fact box */
+.fact_content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fact_content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+}
+
+.fun_facts_buttons {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.fun_facts_button {
+  padding: 1rem 2.5rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  color: #1a1a2e;
+  background: linear-gradient(to top, #ffd633, #fff5cc);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.fun_facts_button:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(to top, #ffee00, #ffffff);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.9), 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Loading spinner perfectly centered */
+.loadingState {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.loadingState i {
+  opacity: 0.8;
+  font-size: 3rem;
+  animation: spin 1s linear infinite;
+}
+
+.loadingState p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.curErrorState {
+  position: fixed;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  max-width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
