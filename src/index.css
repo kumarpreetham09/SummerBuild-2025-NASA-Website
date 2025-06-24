@@ -701,7 +701,7 @@ footer button:hover {
 }
 
 .highlight_card {
-  border: 3px solid #ffd633;
+  border: 3px solid #ffee00;
   box-shadow: 0 0 20px rgba(255, 214, 51, 0.8);
 }
 
@@ -725,7 +725,7 @@ footer button:hover {
 .asteroid_counter {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #ffd633;
+  color: #ffee00;
   background: rgba(0, 0, 0, 0.5);
   padding: 0.6rem 1.2rem;
   border-radius: 12px;
