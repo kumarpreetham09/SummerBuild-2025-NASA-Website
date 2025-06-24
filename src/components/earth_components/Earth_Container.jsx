@@ -1,9 +1,25 @@
-function Earth_Container(){
-    return (
-        <div className="">
-            <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWFydGh8ZW58MHx8MHx8fDA%3D" className="marsImage"></img>
+import Earth_Timelapse from "./Earth_Timelapse";
+
+function Earth_Container({ data, loading, error }) {
+  return (
+    <div className="earth_timelapse_wrapper">
+      <div className="earth_title">🌍 NASA EPIC Earth Timelapse</div>
+      {loading ? (
+        <div className="loadingState">
+          <i className="fa-solid fa-gear fa-spin fa-2x"></i>
+          <p>Loading Earth images...</p>
         </div>
-    )
+      ) : error ? (
+        <div className="errorState">
+          <p>{error}</p>
+        </div>
+      ) : data.length > 0 ? (
+        <Earth_Timelapse data={data} />
+      ) : (
+        <p>No Earth images available.</p>
+      )}
+    </div>
+  );
 }
 
-export default Earth_Container
+export default Earth_Container;

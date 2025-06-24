@@ -1,48 +1,61 @@
-import { useEffect, useState } from "react"
-import Earth_Container from "../components/earth_components/Earth_Container"
-import Navbar from "../components/Navbar"
+import { useEffect, useState } from "react";
+import Earth_Container from "../components/earth_components/Earth_Container";
+import Navbar from "../components/Navbar";
 
-// Load API key from .env
-const API_KEY = import.meta.env.VITE_NASA_API_KEY
-
+const API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
 function Earth() {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [showModal, setShowModal] = useState(false)
-
-  function handleToggleModal() {
-    setShowModal(prev => !prev)
-  }
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchAPIData() {
-
+    async function fetchMostRecentEarthImages() {
+      setLoading(true);
+      setError(null);
       try {
-        const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`
-        const res = await fetch(url)
+        let found = false;
+        const today = new Date();
+        for (let i = 0; i < 30; i++) {
+          const candidate = new Date(today);
+          candidate.setDate(today.getDate() - i);
+          const year = candidate.getFullYear();
+          const month = String(candidate.getMonth() + 1).padStart(2, '0');
+          const day = String(candidate.getDate()).padStart(2, '0');
+          const candidateDate = `${year}-${month}-${day}`;
 
-        if (!res.ok) throw new Error(`API error: ${res.status}`)
+          const url = `https://api.nasa.gov/EPIC/api/natural/date/${candidateDate}?api_key=${API_KEY}`;
+          const res = await fetch(url);
+          if (res.ok) {
+            const apiData = await res.json();
+            if (apiData.length > 0) {
+              setData(apiData.map(item => ({ ...item, fetchDate: candidateDate })));
+              found = true;
+              break;
+            }
+          }
+        }
 
-        const apiData = await res.json()
-        setData(apiData)
-        console.log('Fetched from API')
+        if (!found) {
+          setError("No Earth images available in recent days.");
+        }
       } catch (err) {
-        console.error("Error fetching NASA API:", err.message)
+        console.error("Error fetching NASA EPIC API:", err.message);
+        setError("Failed to load Earth images.");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 
-    fetchAPIData()
-  }, [])
+    fetchMostRecentEarthImages();
+  }, []);
 
   return (
     <>
-    <Navbar></Navbar>
-    <Earth_Container></Earth_Container>
+      <Navbar />
+      <Earth_Container data={data} loading={loading} error={error} />
     </>
-  )
+  );
 }
 
-export default Earth
+export default Earth;

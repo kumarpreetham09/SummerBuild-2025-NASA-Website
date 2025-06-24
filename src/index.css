@@ -438,6 +438,51 @@ footer button:hover {
     to { width: 100% }
 }
 
+.earth_timelapse_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.earth_title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd633;
+  margin-bottom: 0.5rem;
+}
+
+.date_top {
+  font-size: 1.5rem;
+  color: #ffd633;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.earth_timelapse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.earth_timelapse img {
+  width: 750px;
+  max-width: 90vw;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+  transition: opacity 0.5s ease;
+}
+
+.earth_frame_counter {
+  font-size: 1.4rem;
+  color: #ffd633;
+  font-weight: bold;
+}
 
 /* FunFacts Indexing*/
 
