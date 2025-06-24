@@ -8,7 +8,7 @@ function Header() {
           <li><Link to="/">Homepage</Link></li>
           <li><Link to="/apod">APOD</Link></li>
           <li><Link to="/mars">Mars Rover</Link></li>
-          <li><Link to="/earth">Earth Imagery</Link></li>
+          <li><Link to="/earth">Earth Daily</Link></li>
           <li><Link to="/funfacts">Fun Facts</Link></li>
         </ul>
       </nav>
