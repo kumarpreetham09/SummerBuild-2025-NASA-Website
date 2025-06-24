@@ -64,16 +64,18 @@ function AsteroidContent() {
     }).slice(0, 10);
   }
 
-  topAsteroids = topAsteroids.sort((a, b) => new Date(a.approach_date) - new Date(b.approach_date));
-
-  const chartData = topAsteroids.map((asteroid) => {
-    const size = asteroid.estimated_diameter.meters.estimated_diameter_max;
-    const distance = parseFloat(asteroid.close_approach_data[0].miss_distance.kilometers);
-    const shortName = asteroid.name.length > 12 ? asteroid.name.slice(0, 12) + "…" : asteroid.name;
-    return { name: shortName, size, distance, value: sortMode === "size" ? size : distance };
-  });
-
   const sortedFiltered = [...filtered].sort((a, b) => new Date(a.approach_date) - new Date(b.approach_date));
+
+  const topAsteroidIds = new Set(topAsteroids.map(a => a.id));
+
+  const chartData = sortedFiltered
+    .filter(a => topAsteroidIds.has(a.id))
+    .map((asteroid) => {
+      const size = asteroid.estimated_diameter.meters.estimated_diameter_max;
+      const distance = parseFloat(asteroid.close_approach_data[0].miss_distance.kilometers);
+      const shortName = asteroid.name.length > 12 ? asteroid.name.slice(0, 12) + "…" : asteroid.name;
+      return { name: shortName, size, distance, value: sortMode === "size" ? size : distance };
+    });
 
   return (
     <div className="asteroid_wrapper">
