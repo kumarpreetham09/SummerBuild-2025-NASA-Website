@@ -653,7 +653,7 @@ footer button:hover {
   font-size: 1rem;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(145deg, #ffd633, #ffb300);
+  background: linear-gradient(to top, #ffd633, #fff5cc);
   color: #1a1a2e;
   font-weight: bold;
   cursor: pointer;
@@ -664,7 +664,7 @@ footer button:hover {
 
 .sort_selector select:hover {
   transform: scale(1.05);
-  background: linear-gradient(145deg, #ffe680, #ffc107);
+  background: linear-gradient(to top, #ffee00, #ffffff);
 }
 
 .asteroid_chart {
