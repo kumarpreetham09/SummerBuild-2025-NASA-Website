@@ -29,7 +29,7 @@ function Earth() {
           const res = await fetch(url);
           if (res.ok) {
             const apiData = await res.json();
-            if (apiData.length >= 20) {  // <- only accept if at least 20 images
+            if (apiData.length >= 20) {
               setData(apiData.map(item => ({ ...item, fetchDate: candidateDate })));
               found = true;
               break;
