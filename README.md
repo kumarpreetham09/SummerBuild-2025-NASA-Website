@@ -4,18 +4,6 @@ A React.js application that integrates with NASA's public APIs to display space-
 
 ---
 
-## 📅 Table of Contents
-
-- [Features](#features)
-- [Setup Instructions](#setup-instructions)
-- [Environment Variables](#environment-variables)
-- [Available Scripts](#available-scripts)
-- [Deployment](#deployment)
-- [Project Structure](#project-structure)
-- [License](#license)
-
----
-
 ## 📈 Features
 
 - Fetches data from NASA's public APIs
@@ -35,13 +23,9 @@ cd nasa-react-app
 
 ### 2. Create Environment File
 
-Copy the provided `.env.example` file to create your own `.env` file:
+create your own `.env` file with reference to .env.example:
 
-```bash
-cp .env.example .env
-```
-
-### 3. Provide Your API Key
+### 3. Provide Your API Key or use DEMO_KEY
 
 - Visit [https://api.nasa.gov](https://api.nasa.gov) to register and obtain your API key.
 - Replace the placeholder value in `.env` with your actual API key.
@@ -75,29 +59,19 @@ The app will be available at `http://localhost:5173` (or the port indicated by V
 | ------------------- | --------------------------------- |
 | `VITE_NASA_API_KEY` | Your NASA API Key (or `DEMO_KEY`) |
 
-> **Note**: Never commit your actual `.env` file. Only commit `.env.example` with placeholder values.
-
 ---
 
 ## 📅 Available Scripts
 
 - `npm run dev` — Runs the app in development mode
-- `npm run build` — Builds the app for production
-- `npm run preview` — Previews the production build locally
 
 ---
 
 ## 📦 Deployment
 
-When deploying to platforms like Vercel, Netlify, or Render:
-
-- Do not commit `.env`.
-- Configure environment variables directly in the platform's UI using the same variable names as in `.env`.
-- Build commands may vary depending on your platform. Usually:
-
 ```bash
 npm install
-npm run build
+npm run dev
 ```
 
 ---
@@ -106,15 +80,18 @@ npm run build
 
 ```bash
 nasa-react-app/
-├── .env.example    # Environment variable template (committed)
-├── .env            # Actual secrets (not committed)
-├── package.json
-├── src/            # React source code
-└── public/         # Static assets
+├── node_modules/         # Dependencies
+├── public/               # Static assets
+├── src/                  # Application source code
+├── .env.example          # Example environment variables (template)
+├── .env                  # Local environment variables
+├── .eslintrc.js          # ESLint configuration
+├── .gitattributes        # Git file attributes
+├── .gitignore            # Git ignore rules
+├── package.json          # Project metadata and dependencies
+├── package-lock.json     # Exact dependency versions
+├── README.md             # Project documentation
+└── vite.config.js        # Vite build configuration
 ```
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License.
