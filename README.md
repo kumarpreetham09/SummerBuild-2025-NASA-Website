@@ -61,12 +61,6 @@ The app will be available at `http://localhost:5173` (or the port indicated by V
 
 ---
 
-## 📅 Available Scripts
-
-- `npm run dev` — Runs the app in development mode
-
----
-
 ## 📦 Deployment
 
 ```bash
