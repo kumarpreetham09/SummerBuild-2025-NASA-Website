@@ -16,6 +16,7 @@ function Earth() {
       try {
         let found = false;
         const today = new Date();
+
         for (let i = 0; i < 30; i++) {
           const candidate = new Date(today);
           candidate.setDate(today.getDate() - i);
@@ -28,7 +29,7 @@ function Earth() {
           const res = await fetch(url);
           if (res.ok) {
             const apiData = await res.json();
-            if (apiData.length > 0) {
+            if (apiData.length >= 20) {  // <- only accept if at least 20 images
               setData(apiData.map(item => ({ ...item, fetchDate: candidateDate })));
               found = true;
               break;
@@ -37,7 +38,7 @@ function Earth() {
         }
 
         if (!found) {
-          setError("No Earth images available in recent days.");
+          setError("No Earth images with enough frames available in recent days.");
         }
       } catch (err) {
         console.error("Error fetching NASA EPIC API:", err.message);

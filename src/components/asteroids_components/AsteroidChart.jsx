@@ -3,6 +3,10 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 
 function AsteroidChart({ data, getDangerLevel, sortMode }) {
   return (
     <div className="asteroid_chart">
+      <h2 style={{ color: "white", marginBottom: "1rem" }}>
+        {sortMode === "size" ? "Top 10 Largest Asteroids" : "Top 10 Closest Asteroids"}
+      </h2>
+
       <ResponsiveContainer width="100%" height={400}>
         <BarChart 
           data={data}
