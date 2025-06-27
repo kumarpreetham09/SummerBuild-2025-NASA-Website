@@ -29,33 +29,53 @@ function FunFactsButtons({ setFact, setLoading, setError, setImage }) {
   }
 
   async function fetchWikipedia() {
-    setLoading(true);
-    setError(null);
-    setImage(null);
-    try {
-      const categoryRes = await fetch("https://corsproxy.io/?https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Astronomy&cmlimit=50&format=json");
-      const categoryData = await categoryRes.json();
+  setLoading(true);
+  setError(null);
+  setImage(null);
+  try {
+    // 1) Get a random Astronomy page from the Category members endpoint
+    const categoryUrl = new URL("https://en.wikipedia.org/w/api.php");
+    categoryUrl.search = new URLSearchParams({
+      action: "query",
+      list: "categorymembers",
+      cmtitle: "Category:Astronomy",
+      cmlimit: "50",
+      format: "json",
+      origin: "*",            // <-- enable CORS
+    }).toString();
 
-      const pages = categoryData.query.categorymembers;
-      if (!pages || pages.length === 0) {
-        setError("No astronomy facts found.");
-        return;
-      }
+    const categoryRes = await fetch(categoryUrl);
+    if (!categoryRes.ok) throw new Error(`Category fetch failed: ${categoryRes.status}`);
+    const categoryData = await categoryRes.json();
 
-      const randomPage = pages[Math.floor(Math.random() * pages.length)];
-      const pageTitle = encodeURIComponent(randomPage.title);
-
-      const summaryRes = await fetch(`https://corsproxy.io/?https://en.wikipedia.org/api/rest_v1/page/summary/${pageTitle}`);
-      const summaryData = await summaryRes.json();
-
-      setFact(`${summaryData.title}: ${summaryData.extract}`);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load Wikipedia fact");
-    } finally {
-      setLoading(false);
+    const pages = categoryData.query.categorymembers;
+    if (!pages || pages.length === 0) {
+      setError("No astronomy facts found.");
+      return;
     }
+
+    // 2) Pick one at random
+    const randomPage = pages[Math.floor(Math.random() * pages.length)];
+    const title = encodeURIComponent(randomPage.title);
+
+    // 3) Fetch its summary via the REST API
+    const summaryUrl = new URL(`https://en.wikipedia.org/api/rest_v1/page/summary/${title}`);
+    summaryUrl.search = new URLSearchParams({
+      origin: "*",            // <-- enable CORS here too (optional for REST endpoint)
+    }).toString();
+
+    const summaryRes = await fetch(summaryUrl);
+    if (!summaryRes.ok) throw new Error(`Summary fetch failed: ${summaryRes.status}`);
+    const summaryData = await summaryRes.json();
+
+    setFact(`${summaryData.title}: ${summaryData.extract}`);
+  } catch (err) {
+    console.error("Wiki fetch error:", err);
+    setError("Failed to load Wikipedia fact.");
+  } finally {
+    setLoading(false);
   }
+}
 
   function getRandomDate() {
     const start = new Date(1995, 5, 16);
